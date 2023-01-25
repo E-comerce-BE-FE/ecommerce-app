@@ -59,12 +59,12 @@ const Navbar = () => {
           </button>
         </Link>
         <div className="hidden lg:flex lg:gap-3">
-          <Link to="/mycart">
+          <Link to="/my-cart">
             <div className="duration-300 hover:cursor-pointer  active:scale-90 text-customcyan">
               <FaShoppingCart size={30} />
             </div>
           </Link>
-          <Link to="/transactions">
+          <Link to="/transaction-purchase">
             <div className="duration-300 hover:cursor-pointer  active:scale-90 text-customcyan">
               <FaClipboardList size={30} />
             </div>
@@ -88,12 +88,12 @@ const Navbar = () => {
                 <a>Profile</a>
               </li>
             </Link>
-            <Link to="/mycart">
+            <Link to="/my-cart">
               <li className="px-3 py-1 rounded-lg duration-300 hover:bg-gray-200 hover:cursor-pointer active:bg-customcyan active:scale-90 lg:hidden">
                 <a>My Cart</a>
               </li>
             </Link>
-            <Link to="/transactions">
+            <Link to="/transaction-purchase">
               <li className="px-3 py-1 rounded-lg duration-300 hover:bg-gray-200 hover:cursor-pointer active:bg-customcyan active:scale-90 lg:hidden">
                 <a>Transactions</a>
               </li>
