@@ -11,7 +11,7 @@ import logo from "src/assets/logo.svg";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-gray-100 lg:px-10 shadow-lg mb-20 py-4">
+    <div className="navbar sticky top-0 z-50 bg-gray-100 lg:px-10 shadow-lg mb-20 py-4">
       <section className="navbar-start">
         <Link to="/">
           <img
@@ -81,7 +81,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="z-50 dropdown-content mt-56 p-3 bg-gray-50 rounded-box w-40 border-2 border-customcyan shadow-lg lg:mt-40"
+            className="z-50 dropdown-content mt-60 p-3 bg-gray-50 rounded-box w-40 border-2 border-customcyan shadow-lg lg:mt-44"
           >
             <Link to="/profile">
               <li className="px-3 py-1 rounded-lg duration-300 hover:bg-gray-200 hover:cursor-pointer active:bg-customcyan active:scale-90">
