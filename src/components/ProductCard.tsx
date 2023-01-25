@@ -1,6 +1,6 @@
 const ProductCard = () => {
   return (
-    <div className="card card-compact w-fit bg-gray-50 shadow-xl items-center p-3 duration-300 hover:cursor-pointer hover:scale-105 active:scale-100">
+    <div className="card card-compact w-fit bg-gray-300 shadow-xl items-center p-3 duration-300 hover:cursor-pointer hover:scale-105 active:scale-100 rounded-box">
       <figure className="pb-3 w-full">
         <img
           src="https://placeimg.com/400/225/arch"
