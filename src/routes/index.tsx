@@ -4,6 +4,8 @@ import Home from "pages";
 import DetailProduct from "pages/DetailProduct";
 import Register from "pages/auth/Register";
 import Login from "pages/auth/Login";
+import Profile from "pages/Profile";
+import MyCart from "pages/MyCart";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
   {
     path: "/detailproduct",
     element: <DetailProduct />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+  {
+    path: "/mycart",
+    element: <MyCart />,
   },
 ]);
 
