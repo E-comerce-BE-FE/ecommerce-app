@@ -50,13 +50,13 @@ const Login = () => {
                       color: "white",
                     }}
                   >
-                    Log In
+                    Login
                   </button>
                 </form>
                 <p className="text-black mx-auto mt-5">
                   Don't have an account yet?{" "}
                   <Link id="to-register" to="/register">
-                    <span className="text-blue-600">Signup</span>
+                    <span className="text-blue-600 font-bold">Signup</span>
                   </Link>
                 </p>
               </div>
