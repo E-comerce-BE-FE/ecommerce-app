@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 import Layout from "components/Layout";
 import Input from "components/Input";
 
@@ -72,6 +73,7 @@ const Register = () =>{
                                         style={{ border: "4px solid #22CAB6" }}
                                     />
                                     <label className="label">
+
                                         <span className="label-text">Password</span>
                                     </label>
                                     <input
@@ -79,6 +81,7 @@ const Register = () =>{
                                         placeholder="*************"
                                         className="input input-bordered input-primary w-full bg-white"
                                         style={{ border: "4px solid #22CAB6" }}
+
                                     />
                                     <button
                                         className="btn w-full"
