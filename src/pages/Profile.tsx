@@ -1,6 +1,7 @@
 import { FaPenSquare } from "react-icons/fa";
 import React from "react";
 
+import ProductCard from "components/ProductCard";
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
 
@@ -8,7 +9,7 @@ const Profile = () => {
   return (
     <Layout>
       <Navbar />
-      <p className="text-center text-3xl font-bold mb-10">My Profile</p>
+      <p className="text-center text-3xl font-bold mb-7">My Profile</p>
       <section className="flex items-center gap-10 mx-40 mb-20 border-2 border-customcyan p-10 rounded-3xl">
         <div className="flex flex-col gap-2">
           <img
@@ -201,53 +202,6 @@ const Profile = () => {
               </td>
             </tr>
             <tr>
-              <td className="py-3 text-lg font-medium">Birthdate</td>
-              <td className="text-lg">30 November 1998</td>
-              <td className="text-customcyan text-3xl">
-                <form>
-                  <label htmlFor="my-modal-2">
-                    <p className="duration-300 hover:cursor-pointer active:scale-75">
-                      <FaPenSquare />
-                    </p>
-                  </label>
-                  <input
-                    type="checkbox"
-                    id="my-modal-2"
-                    className="modal-toggle"
-                  />
-                  <div className="modal modal-bottom sm:modal-middle">
-                    <div className="modal-box border-2 border-customcyan">
-                      <p className="mb-5 pb-2 text-xl border-b-2 font-medium">
-                        Edit Profile
-                      </p>
-                      <div className="flex justify-center items-center gap-5">
-                        <p className="text-lg">Birthdate :</p>
-                        <input
-                          type="text"
-                          placeholder="Type new birthdate"
-                          className="input input-bordered input-sm w-full max-w-xs border-customcyan"
-                        />
-                      </div>
-                      <div className="modal-action">
-                        <button
-                          type="submit"
-                          className="w-20 text-sm text-center border-2 border-customcyan bg-customcyan rounded-xl py-1 text-gray-50 font-medium duration-300 hover:cursor-pointer  active:scale-90"
-                        >
-                          Update
-                        </button>
-                        <label
-                          htmlFor="my-modal-2"
-                          className="w-20 text-sm text-center border-2 border-customcyan rounded-xl py-1 text-customcyan font-medium duration-300 hover:cursor-pointer  active:scale-90"
-                        >
-                          Cancel
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </td>
-            </tr>
-            <tr>
               <td className="py-3 text-lg font-medium">Email</td>
               <td className="text-lg">regatajoli@gmail.com</td>
               <td className="text-customcyan text-3xl">
@@ -343,12 +297,10 @@ const Profile = () => {
             </tr>
             <tr>
               <td className="py-3 text-lg font-medium flex">Address</td>
-              <td className="text-lg">
-                <td>
-                  Jalan jalan di mana mana hatiku senang no. 100 kota hantu
-                  asdadasdas asd asdasdasda saadasd asdadasd asdasdasda
-                  asdasdasd asdasdasd asdasdasd asdasdasd adasdsa
-                </td>
+              <td className="text-lg pr-10">
+                Jalan jalan di mana mana hatiku senang no. 100 kota hantu
+                asdadasdas asd asdasdasda saadasd asdadasd asdasdasda asdasdasd
+                asdasdasd asdasdasd asdasdasd adasdsa
               </td>
               <td className="text-customcyan text-3xl">
                 <form>
@@ -396,6 +348,14 @@ const Profile = () => {
             </tr>
           </tbody>
         </table>
+      </section>
+      <section className="flex flex-col justify-center items-center mx-40 mb-20">
+        <p className="text-center text-3xl font-bold mb-10">My Products</p>
+        <div className="grid grid-cols-4 gap-10">
+          {[...Array(8)].map((e) => (
+            <ProductCard />
+          ))}
+        </div>
       </section>
     </Layout>
   );
