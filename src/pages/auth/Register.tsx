@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 import Layout from "components/Layout";
 import Input from "components/Input";
@@ -62,13 +64,24 @@ const Register = () =>{
                                         style={{ border: "4px solid #22CAB6" }}
                                     />
                                     <label className="label">
+                                        <span className="label-text">Alamat</span>
+                                    </label>
+                                    <input
+                                        type="text-area"
+                                        placeholder="please enter your detail..."
+                                        className="input input-bordered input-primary w-full bg-white"
+                                        style={{ border: "4px solid #22CAB6" }}
+                                    />
+                                    <label className="label">
+
                                         <span className="label-text">Password</span>
                                     </label>
                                     <input
                                         type="password"
                                         placeholder="*************"
                                         className="input input-bordered input-primary w-full bg-white"
-                                        style={{ border: "4px soluid #22CAB6" }}
+                                        style={{ border: "4px solid #22CAB6" }}
+
                                     />
                                     <button
                                         className="btn w-full"
@@ -82,12 +95,12 @@ const Register = () =>{
                                         Sign-Up
                                     </button>
                                 </form>
-                                <h2
-                                    className="mx-auto mt-5"
-                                    style={{ color: "#22CAB6", fontWeight: "600" }}
-                                >
-                                    Already have an account? sign-in{" "}
-                                </h2>
+                                <p className="text-black dark:text-white mx-auto mt-5">
+                                    Don't have an account?{" "}
+                                    <Link id="to-login" to="/login">
+                                        log-in
+                                    </Link>
+                                </p>
                             </div>
                         </div>
                         <div className="flex-1 bg-white">

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Layout from "components/Layout";
 
@@ -52,12 +53,12 @@ const Login = () => {
                                         Log In
                                     </button>
                                 </form>
-                                <h2
-                                    className="mx-auto mt-5"
-                                    style={{ color: "#000000", fontWeight: "600" }}
-                                >
-                                    Don't have an account? sign-up{}
-                                </h2>
+                                <p className="text-black dark:text-white mx-auto mt-5">
+                                    Already have an account?{" "}
+                                    <Link id="to-register" to="/register">
+                                        sign-up
+                                    </Link>
+                                </p>
                             </div>
                         </div>
                         <div className="flex-1 bg-white">
