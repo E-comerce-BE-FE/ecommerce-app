@@ -32,6 +32,12 @@ const Navbar = () => {
             className="w-36 py-2 px-3 rounded-md border-2 border-customcyan bg-gray-200"
           />
         </div>
+        <button className="rounded-full border-2 text-customcyan border-customcyan p-1 w-24 duration-300 hover:cursor-pointer  active:scale-90">
+          Signup
+        </button>
+        <button className="rounded-full border-2 text-white bg-customcyan p-1 w-24 duration-300 hover:cursor-pointer  active:scale-90">
+          Login
+        </button>
         <div className="duration-300 hover:cursor-pointer  active:scale-90 text-customcyan hidden lg:flex">
           <FaShoppingCart size={30} />
         </div>
