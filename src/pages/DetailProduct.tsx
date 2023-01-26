@@ -17,11 +17,11 @@ interface TypeProduct{
 interface User{
   user_id: number;
   name: string;
-  adddress: string;
+  address: string;
   profilepicture: string;
 }
 
-const request = "http://18.140.2.245"
+const request = "https://shirayuki.site/"
 const DetailProduct = () => {
   const {id} = useParams()
 
@@ -69,7 +69,7 @@ const DetailProduct = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <span className="font-semibold">{product?.user.name}</span>
-                  <span>{product?.user.adddress}</span>
+                  <span>{product?.user.address}</span>
                 </div>
               </div>
             </div>
