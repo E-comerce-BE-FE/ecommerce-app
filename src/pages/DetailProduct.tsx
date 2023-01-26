@@ -1,5 +1,6 @@
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Routes, Route, useParams } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import axios from "axios";
 
 import Layout from "components/Layout";
@@ -24,15 +25,17 @@ interface User {
 
 const DetailProduct = () => {
   const { id } = useParams();
-
+  const [cookie] = useCookies(["token"]);
   const [product, setProduct] = useState<TypeProduct>();
   useEffect(() => {
     fetchData();
   }, []);
 
-  function fetchData() {
-    axios
-      .get(`/products/${id}`)
+  const fetchData = async () => {
+    await axios
+      .get(`https://shirayuki.site/products/${id}`, {
+        headers: { Authorization: `Bearer ${cookie.token}` },
+      })
       .then((res) => {
         setProduct(res.data.data);
         console.log(res.data);
@@ -40,7 +43,7 @@ const DetailProduct = () => {
       .catch((err) => {
         alert(err());
       });
-  }
+  };
 
   return (
     <Layout>

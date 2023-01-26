@@ -1,15 +1,17 @@
 import withReactContent from "sweetalert2-react-content";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import axios from "axios";
 
+import AuthButton from "components/Button";
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
 import Swal from "utils/Swal";
-import AuthButton from "components/Button";
 
 const AddNewProduct = () => {
   const navigate = useNavigate();
+  const [cookie] = useCookies(["token"]);
   const MySwal = withReactContent(Swal);
   const [disabled, setDisabled] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
@@ -36,8 +38,10 @@ const AddNewProduct = () => {
     body.append("price", price);
     body.append("description", description);
     body.append("file", file);
-    axios
-      .post("products", body)
+    await axios
+      .post("https://shirayuki.site/products", body, {
+        headers: { Authorization: `Bearer ${cookie.token}` },
+      })
       .then((res) => {
         const { message } = res.data;
         MySwal.fire({

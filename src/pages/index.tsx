@@ -20,9 +20,11 @@ function App() {
     fetchData();
   }, []);
 
-  function fetchData() {
-    axios
-      .get(`products/`)
+  const fetchData = async () => {
+    await axios
+      .get(`https://shirayuki.site/products/`, {
+        headers: { Authorization: `Bearer ${cookie.token}` },
+      })
       .then((res) => {
         setProducts(res.data.data);
         //console.log(res.data)
@@ -31,7 +33,7 @@ function App() {
         alert(err());
       })
       .finally(() => setLoading(false));
-  }
+  };
 
   return (
     <Layout>
