@@ -1,12 +1,12 @@
 import withReactContent from "sweetalert2-react-content";
 import { Link, useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import axios from "axios";
 
+import AuthButton from "components/Button";
 import Layout from "components/Layout";
 import Swal from "utils/Swal";
-import AuthButton from "components/Button";
 
 const Login = () => {
   const [, setCookie] = useCookies(["token"]);
