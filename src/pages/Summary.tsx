@@ -1,12 +1,49 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import React from "react";
+import {useState, useEffect} from "react";
+import axios from "axios";
 
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
 import SummaryCard from "components/SummaryCard";
 
+interface TypeProduct{
+  id: number;
+  product_name: string;
+  stock: number;
+  price: number;
+  product_image: string;
+  description: string;
+  user: User;
+}
+
+interface User{
+  user_id: number;
+  name: string;
+  address: string;
+  user_image: string;
+}
+
 const Summary = () => {
+  const [products, setProducts] = useState<TypeProduct[]>([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+  function fetchData() {
+    axios
+      .get(
+        `/carts/result`
+      )
+      .then((res) => {
+        setProducts(res.data.data)
+      })
+      .catch((err) => {
+        alert(err());
+      })
+  }
+
   return (
     <Layout>
       <Navbar />
@@ -21,8 +58,8 @@ const Summary = () => {
       </section>
       <section className="flex justify-center items-center gap-10 mx-40 border-2 border-customcyan p-10 rounded-t-3xl">
         <div className="flex flex-col gap-10 w-full">
-          {[...Array(3)].map((e) => (
-            <SummaryCard />
+          {products.map((product) => (
+            <SummaryCard summaryproduct={product} />
           ))}
         </div>
       </section>
@@ -47,7 +84,7 @@ const Summary = () => {
           <p>Total Payment:</p>
           <p>Rp 330.000,-</p>
         </span>
-        <Link to="/TransactionPurchase">
+        <Link to="/transaction-purchase">
           <div className="flex justify-center border-2 bg-customcyan rounded-2xl p-3 text-white font-bold duration-300 hover:cursor-pointer  active:scale-95">
             Go To Payment
           </div>
