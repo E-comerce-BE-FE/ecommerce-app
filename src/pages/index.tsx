@@ -1,13 +1,44 @@
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
 import ProductCard from "components/ProductCard";
 import "styles/index.css";
 
+import { ProductType } from "utils/types/product";
+
+const request = "http://18.140.2.245"
+
 function App() {
+
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+  function fetchData() {
+    axios
+      .get(
+        `${request}/products/`
+      )
+      .then((res) => {
+        setProducts(res.data.data)
+        //console.log(res.data)
+      })
+      .catch((err) => {
+        alert(err());
+      })
+      .finally(() => setLoading(false));
+  }
+
+
+
   return (
     <Layout>
       <Navbar />
@@ -27,8 +58,8 @@ function App() {
           </h2>
         </div>
         <div className="grid grid-cols-5 gap-10">
-          {[...Array(30)].map((e) => (
-            <ProductCard />
+          {products.map((product) => (
+            <ProductCard productData={product}/>
           ))}
         </div>
         <div className="sticky bottom-20 flex justify-end mr-20 text-customcyan">
