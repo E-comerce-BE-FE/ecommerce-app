@@ -32,8 +32,8 @@ const Login = () => {
       email,
       password,
     };
-    axios
-      .post("login", body)
+    await axios
+      .post("https://shirayuki.site/login", body)
       .then((res) => {
         const { message } = res.data;
         setCookie("token", res.data.token, { path: "/" });
