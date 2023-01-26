@@ -9,18 +9,13 @@ const CartCard = () => {
         </div>
       </section>
       <section>
-        <div className="flex flex-col items-end text-end gap-2">
+        <div className="flex flex-col items-end gap-2">
           <p className="font-semibold">Rp 100000,-</p>
-          <div className="btn-group rounded-xl text-center w-full">
-            <button className="rounded-l-xl  w-fit px-2 border-2 border-customcyan duration-300 active:scale-90">
-              -
-            </button>
-            <button className="w-full px-2 border-y-2 border-customcyan hover:cursor-default ">
-              1
-            </button>
-            <button className="rounded-r-xl w-fit px-2 border-2 border-customcyan text-center duration-300 active:scale-90">
-              +
-            </button>
+          <div className="rounded-xl text-end w-full">
+            <input
+              type="number"
+              className="rounded-xl w-[4.5rem] px-2 border-2 border-customcyan duration-300 active:scale-90"
+            />
           </div>
           <span className="px-4 w-fit rounded-xl border-2 border-customcyan text-red-600 font-semibold hover:cursor-pointer duration-300 active:scale-90">
             Remove

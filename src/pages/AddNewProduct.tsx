@@ -1,55 +1,145 @@
-import React from "react";
+import withReactContent from "sweetalert2-react-content";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
+import Swal from "utils/Swal";
+import AuthButton from "components/Button";
 
-const NewProduct = () => {
+const AddNewProduct = () => {
+  const navigate = useNavigate();
+  const MySwal = withReactContent(Swal);
+  const [disabled, setDisabled] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [file, setFile] = useState<any>();
+  const [product_name, setProductName] = useState<string>("");
+  const [stock, setStock] = useState<string>("");
+  const [price, setPrice] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+
+  useEffect(() => {
+    if (product_name && stock && price && description) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [product_name, stock, price, description]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
+    e.preventDefault();
+    const body = new FormData();
+    body.append("product_name", product_name);
+    body.append("stock", stock);
+    body.append("price", price);
+    body.append("description", description);
+    body.append("file", file);
+    axios
+      .post("products", body)
+      .then((res) => {
+        const { message } = res.data;
+        MySwal.fire({
+          title: "Success",
+          text: "New product added",
+          showCancelButton: false,
+        });
+        navigate("/");
+      })
+      .catch((err) => {
+        const { data } = err.response;
+        MySwal.fire({
+          title: "Try Again",
+          text: "Failed to add product",
+          showCancelButton: false,
+        });
+      })
+      .finally(() => setLoading(false));
+  };
+
   return (
     <Layout>
-        <Navbar />
-        <section className="flex justify-center items-center gap-10 mx-40 border-2 border-customcyan p-10 rounded-t-md">
-            <div className="border-2 border-customcyan rounded-2xl">
-                <img src="src/assets/shirt.png" alt="image" />
+      <Navbar />
+      <form className="mb-20" onSubmit={(e) => handleSubmit(e)}>
+        <section className="flex justify-center items-center gap-10 mx-40 border-2 border-customcyan p-10 rounded-t-3xl">
+          <div className="flex flex-col">
+            <div className="border-2 border-customcyan text-center py-20 rounded-2xl">
+              <p className="text-customcyan font-bold text-xl">PRODUCT IMAGE</p>
             </div>
-            <div className="flex flex-col gap-10">
-                <div className="flex items-center gap-5">
-                    <div className="flex flex-col gap-5 w-3/5">
-                        <div className="font-bold text-xl">
-                            Mens Long Sleeve T-shirt Cotton Base Layer Slim Muscle
-                        </div>
-                        <div className="text-gray-500">Stock: 99999 pcs</div>
-                        <div className="w-fit py-2 px-5 mt-1 border-2 border-customcyan rounded-xl text-center">
-                            Rp 50000,-
-                        </div>
-                    </div>
+            <form className="flex justify-center mt-5">
+              <input
+                type="file"
+                onChange={(e) => setFile(e.target.files?.[0])}
+                className="file-input file-input-bordered w-full border-2 border-customcyan max-w-xs"
+              />
+            </form>
+          </div>
+          <div className="flex items-center">
+            <div className="flex flex-col gap-5">
+              <div className="text-xl">
+                <div className="font-bold w-80">
+                  <p>Name:</p>
+                  <p>{product_name}</p>
                 </div>
+                <input
+                  id="inputProduct-name"
+                  onChange={(e) => setProductName(e.target.value)}
+                  type="text"
+                  placeholder="Type product's name"
+                  className="file-input file-input-bordered px-3 mt-1 w-96 border-2 border-customcyan max-w-xs"
+                />
+              </div>
+              <div className="text-gray-500">
+                <p>Stock: {stock} pcs</p>
+                <input
+                  onChange={(e) => setStock(e.target.value)}
+                  type="text"
+                  placeholder="Type product's stock"
+                  className="file-input file-input-bordered px-3 mt-1 w-full border-2 border-customcyan max-w-xs"
+                />
+              </div>
+              <div>
+                <div className="flex items-center gap-3 font-bold text-lg">
+                  <span>Rp</span>
+                  <span className="">
+                    {price}
+                    <span> ,-</span>
+                  </span>
+                </div>
+
+                <input
+                  onChange={(e) => setPrice(e.target.value)}
+                  type="text"
+                  placeholder="Type product's price"
+                  className="file-input file-input-bordered px-3 mt-1 w-full border-2 border-customcyan max-w-xs"
+                />
+              </div>
             </div>
+          </div>
         </section>
-        <section className="flex flex-col gap-5 mx-40 mt-5 mb-20 border-2 border-customcyan p-10 rounded-b-3xl">
-            <span className="text-customcyan font-semibold">Description</span>
-            <span>
-                Model Layaknya baju kebanyakan, model pasti jadi salah satu
-                pertimbangan utama ketika seseorang memilih baju, termasuk gamis.
-                Beberapa hal yang seringkali menjadi pertimbangan adalah model kancing
-                samping, model pergelangan tangan dan model lipit di bagian badan
-                gamis. Bagaimana baju gamis jatuh di tubuh ketika dikenakan juga jadi
-                hal yang penting. Ukuran Deskripsi baju gamis yang lengkap dapat
-                meyakinkan pelanggan untuk membeli produk Anda, termasuk dengan
-                menyertakan berbagai ukuran baju yang memang sesuai antara yang Anda
-                tuliskan dan sesungguhnya. Kualtias Bahan Selain itu, bahan yang
-                nyaman, ringan, tidak mudah rusak serta menyerap keringat juga
-                biasanya menjadi pilihan banyak pembeli. Harga Setelah semuanya cocok
-                baik dari segi model, ukuran, dan kualitas bahan, akhirnya harga yang
-                menjadi penentuan. Memang harga sesuai dengan kualitas namun pastikan
-                Anda menjelaskan kenapa produk Anda memang memiliki harga yang relatif
-                lebih mahal, misalnya dari segi bahan yang langka dan berkualitas.
-            </span>
+        <section className="flex flex-col gap-5 mx-40 mt-5 border-2 border-customcyan p-10 rounded-b-3xl">
+          <span className="text-customcyan font-semibold">Description</span>
+          <span className="hidden">{description}</span>
+          <textarea
+            name=""
+            id=""
+            onChange={(e) => setDescription(e.target.value)}
+            cols={30}
+            rows={10}
+            className="w-full border-2 border-customcyan rounded-2xl p-5"
+          ></textarea>
         </section>
-        <div className="flex justify-center border-2 bg-customcyan rounded-2xl p-3 text-white font-bold duration-300 hover:cursor-pointer  active:scale-95">
-            Add new product
+        <div className="flex justify-center mx-60 mt-5">
+          <AuthButton
+            id="btn-submit"
+            label="ADD NEW PRODUCT"
+            loading={loading || disabled}
+          />
         </div>
+      </form>
     </Layout>
   );
 };
 
-export default NewProduct;
+export default AddNewProduct;
