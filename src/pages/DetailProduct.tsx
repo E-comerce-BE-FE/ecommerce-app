@@ -38,12 +38,21 @@ const DetailProduct = () => {
       })
       .then((res) => {
         setProduct(res.data.data);
-        console.log(res.data);
       })
       .catch((err) => {
         alert(err());
       });
   };
+
+  // const [update, setUpdate] = useState<TypeProduct>();
+  // useEffect(()=>{
+  //   data();
+  // }, [])
+  // function data(){
+  //   axios.put(`product/${id}`);
+    
+  // }
+
 
   return (
     <Layout>

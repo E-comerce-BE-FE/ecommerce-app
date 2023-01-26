@@ -10,6 +10,22 @@ import Navbar from "components/Navbar";
 import { ProductType } from "utils/types/product";
 import "styles/index.css";
 
+interface TypeProduct{
+  id: number;
+  product_name: string;
+  stock: number;
+  price: number;
+  product_image: string;
+  user: User;
+}
+
+interface User{
+  user_id: number;
+  name: string;
+  address: string;
+  profilepicture: string;
+}
+
 function App() {
   const [cookie] = useCookies(["token"]);
   const checkToken = cookie.token;
@@ -19,7 +35,7 @@ function App() {
   useEffect(() => {
     fetchData();
   }, []);
-
+  
   const fetchData = async () => {
     await axios
       .get(`https://shirayuki.site/products/`, {
@@ -27,13 +43,11 @@ function App() {
       })
       .then((res) => {
         setProducts(res.data.data);
-        //console.log(res.data)
       })
       .catch((err) => {
         alert(err());
       })
-      .finally(() => setLoading(false));
-  };
+  }
 
   return (
     <Layout>
