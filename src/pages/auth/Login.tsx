@@ -1,9 +1,61 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import withReactContent from "sweetalert2-react-content";
+import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import Layout from "components/Layout";
+import Swal from "utils/Swal";
+import AuthButton from "components/Button";
 
 const Login = () => {
+  const [, setCookie] = useCookies(["token"]);
+  const MySwal = withReactContent(Swal);
+  const navigate = useNavigate();
+  const [disabled, setDisabled] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+
+  useEffect(() => {
+    if (email && password) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [email, password]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
+    e.preventDefault();
+    const body = {
+      email,
+      password,
+    };
+    axios
+      .post("login", body)
+      .then((res) => {
+        const { message } = res.data;
+        setCookie("token", res.data.token, { path: "/" });
+        MySwal.fire({
+          title: "Success",
+          text: message,
+          showCancelButton: false,
+        });
+        // console.log(res.data.token);
+        navigate("/");
+      })
+      .catch((err) => {
+        const { data } = err.response;
+        MySwal.fire({
+          title: "Failed",
+          text: data.message,
+          showCancelButton: false,
+        });
+      })
+      .finally(() => setLoading(false));
+  };
+
   return (
     <Layout>
       <div className="w-full h-screen flex flex-col overflow-auto  bg-white">
@@ -11,7 +63,10 @@ const Login = () => {
           <div className="flex flex-row">
             <div className="flex-1 bg-white">
               <div className="flex flex-col">
-                <form className="mx-auto mt-20">
+                <form
+                  className="mx-auto mt-20"
+                  onSubmit={(e) => handleSubmit(e)}
+                >
                   <h2
                     style={{
                       fontFamily: "Poppins",
@@ -27,6 +82,8 @@ const Login = () => {
                     <span className="label-text">Email</span>
                   </label>
                   <input
+                    id="input-email"
+                    onChange={(e) => setEmail(e.target.value)}
                     type="email"
                     placeholder="Enter your email"
                     className="input input-bordered input-primary w-full bg-white"
@@ -36,22 +93,18 @@ const Login = () => {
                     <span className="label-text">Password</span>
                   </label>
                   <input
+                    id="input-password"
+                    onChange={(e) => setPassword(e.target.value)}
                     type="password"
                     placeholder="****************"
                     className="input input-bordered input-primary w-full bg-white"
                     style={{ border: "4px solid #22CAB6" }}
                   />
-                  <button
-                    className="btn w-full"
-                    style={{
-                      marginTop: "1rem",
-                      backgroundColor: "#22CAB6",
-                      border: "none",
-                      color: "white",
-                    }}
-                  >
-                    Login
-                  </button>
+                  <AuthButton
+                    id="btn-login"
+                    label="Login"
+                    loading={loading || disabled}
+                  />
                 </form>
                 <p className="text-black mx-auto mt-5">
                   Don't have an account yet?{" "}
