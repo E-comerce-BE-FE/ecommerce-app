@@ -1,37 +1,73 @@
-import React from "react";
+import { BsFillPlusCircleFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
 import ProductCard from "components/ProductCard";
 import "styles/index.css";
 
+import { ProductType } from "utils/types/product";
+
+const request = "http://18.140.2.245"
+
 function App() {
+
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+  function fetchData() {
+    axios
+      .get(
+        `${request}/products/`
+      )
+      .then((res) => {
+        setProducts(res.data.data)
+        //console.log(res.data)
+      })
+      .catch((err) => {
+        alert(err());
+      })
+      .finally(() => setLoading(false));
+  }
+
+
+
   return (
     <Layout>
-      <div className="w-full h-screen bg-white">
-        <Navbar />
-        <div className="w-full h-screen flex overflow-auto  bg-white">
-          <div className="w-full hp-screen">
-            <div className="flex-1 bg-white">
-              <h2
-                className="mb-10"
-                style={{
-                  fontFamily: "Poppins",
-                  fontSize: "1.75em",
-                  fontWeight: "700",
-                  textAlign: "center",
-                  color: "#000000",
-                }}
-              >
-                All Product
-              </h2>
+      <Navbar />
+      <div className="w-full hp-screen px-20 pb-20">
+        <div className="flex-1">
+          <h2
+            className="mb-10"
+            style={{
+              fontFamily: "Poppins",
+              fontSize: "1.75em",
+              fontWeight: "700",
+              textAlign: "center",
+              color: "#000000",
+            }}
+          >
+            All Product
+          </h2>
+        </div>
+        <div className="grid grid-cols-5 gap-10">
+          {products.map((product) => (
+            <ProductCard productData={product}/>
+          ))}
+        </div>
+        <div className="sticky bottom-20 flex justify-end mr-20 text-customcyan">
+          <Link to="add-new-product">
+            <div className="bg-gray-50 rounded-full p-1 duration-300 hover:cursor-pointer hover:text-cyan-300 active:scale-90">
+              <BsFillPlusCircleFill size={50} />
             </div>
-            <div className="grid grid-cols-5 gap-10">
-              {[...Array(10)].map((e) => (
-                <ProductCard />
-              ))}
-            </div>
-          </div>
+          </Link>
         </div>
       </div>
     </Layout>
