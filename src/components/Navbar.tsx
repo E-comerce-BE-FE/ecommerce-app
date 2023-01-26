@@ -105,24 +105,24 @@ const Navbar = () => {
               >
                 <Link to="/profile">
                   <li className="px-3 py-1 rounded-lg duration-300 hover:bg-gray-200 hover:cursor-pointer active:bg-customcyan active:scale-90">
-                    <a>Profile</a>
+                    <p>Profile</p>
                   </li>
                 </Link>
                 <Link to="/my-cart">
                   <li className="px-3 py-1 rounded-lg duration-300 hover:bg-gray-200 hover:cursor-pointer active:bg-customcyan active:scale-90 lg:hidden">
-                    <a>My Cart</a>
+                    <p>My Cart</p>
                   </li>
                 </Link>
                 <Link to="/transaction-purchase">
                   <li className="px-3 py-1 rounded-lg duration-300 hover:bg-gray-200 hover:cursor-pointer active:bg-customcyan active:scale-90 lg:hidden">
-                    <a>Transactions</a>
+                    <p>Transactions</p>
                   </li>
                 </Link>
                 <li
                   className="px-3 py-1 rounded-lg duration-300 hover:bg-gray-200 hover:cursor-pointer active:bg-customcyan active:scale-90"
                   onClick={() => handleLogout()}
                 >
-                  <a>Logout</a>
+                  <p>Logout</p>
                 </li>
               </ul>
             </div>
