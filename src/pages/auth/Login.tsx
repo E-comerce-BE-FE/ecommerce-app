@@ -33,7 +33,7 @@ const Login = () => {
       password,
     };
     await axios
-      .post("https://shirayuki.site/login", body)
+      .post("login", body)
       .then((res) => {
         const { message } = res.data;
         setCookie("token", res.data.token, { path: "/" });

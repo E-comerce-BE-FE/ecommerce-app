@@ -13,7 +13,7 @@ import MyCart from "pages/MyCart";
 import Home from "pages";
 import { useCookies } from "react-cookie";
 
-// axios.defaults.baseURL = "https://shirayuki.site/";
+axios.defaults.baseURL = "https://shirayuki.site/";
 
 const App = () => {
   const [cookie, , removeCookie] = useCookies(["token"]);

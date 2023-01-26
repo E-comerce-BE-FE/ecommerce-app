@@ -33,7 +33,7 @@ const DetailProduct = () => {
 
   const fetchData = async () => {
     await axios
-      .get(`https://shirayuki.site/products/${id}`, {
+      .get(`products/${id}`, {
         headers: { Authorization: `Bearer ${cookie.token}` },
       })
       .then((res) => {
@@ -50,9 +50,8 @@ const DetailProduct = () => {
   // }, [])
   // function data(){
   //   axios.put(`product/${id}`);
-    
-  // }
 
+  // }
 
   return (
     <Layout>

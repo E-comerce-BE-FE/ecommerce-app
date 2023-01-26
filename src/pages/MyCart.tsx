@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -8,7 +8,7 @@ import CartCard from "components/CartCard";
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
 
-interface TypeProduct{
+interface TypeProduct {
   id: number;
   product_name: string;
   seller: string;
@@ -23,18 +23,15 @@ const MyCart = () => {
     fetchData();
   }, []);
 
-
   function fetchData() {
     axios
-      .get(
-        `/carts`
-      )
+      .get(`carts`)
       .then((res) => {
-        setProducts(res.data.data)
+        setProducts(res.data.data);
       })
       .catch((err) => {
         alert(err());
-      })
+      });
   }
   return (
     <Layout>
@@ -51,7 +48,7 @@ const MyCart = () => {
       <section className="flex justify-center items-center gap-10 mx-40 border-2 border-customcyan p-10 rounded-t-3xl">
         <div className="flex flex-col gap-10 w-full">
           {products.map((product) => (
-            <CartCard cartProduct={product}/>
+            <CartCard cartProduct={product} />
           ))}
         </div>
       </section>

@@ -37,7 +37,7 @@ const Profile = () => {
 
   const fetchDataProfile = async () => {
     await axios
-      .get(`https://shirayuki.site/users`, {
+      .get(`users`, {
         headers: { Authorization: `Bearer ${cookie.token}` },
       })
       .then((res) => {
@@ -82,7 +82,7 @@ const Profile = () => {
     body.append("password", password);
 
     await axios
-      .put(`https://shirayuki.site/users`, body, {
+      .put(`users`, body, {
         headers: { Authorization: `Bearer ${cookie.token}` },
       })
       .then((res) => {
@@ -108,7 +108,7 @@ const Profile = () => {
   const handleDelete = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     await axios
-      .delete(`https://shirayuki.site/users`, {
+      .delete(`users`, {
         headers: { Authorization: `Bearer ${cookie.token}` },
       })
       .then((res) => {
@@ -139,11 +139,11 @@ const Profile = () => {
           <img
             src={getImage}
             alt="user-image"
-            className="text-center border-4 rounded-full pb-3 w-60 h-60 mb-4"
+            className="w-96 text-center border-4 border-customcyan rounded-full mb-4"
           />
           <form>
             <label htmlFor="my-modal-8">
-              <p className="text-center border-2 border-customcyan bg-customcyan rounded-xl p-1 text-gray-50 font-medium duration-300 hover:cursor-pointer  active:scale-95">
+              <p className="text-center border-2 border-customcyan bg-customcyan rounded-xl p-4 text-gray-50 font-bold duration-300 hover:cursor-pointer  active:scale-95">
                 Delete Account
               </p>
             </label>

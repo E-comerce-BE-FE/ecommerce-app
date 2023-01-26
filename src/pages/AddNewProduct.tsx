@@ -39,7 +39,7 @@ const AddNewProduct = () => {
     body.append("description", description);
     body.append("file", file);
     await axios
-      .post("https://shirayuki.site/products", body, {
+      .post("products", body, {
         headers: { Authorization: `Bearer ${cookie.token}` },
       })
       .then((res) => {
