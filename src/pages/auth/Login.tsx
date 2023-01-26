@@ -38,18 +38,17 @@ const Login = () => {
         const { message } = res.data;
         setCookie("token", res.data.token, { path: "/" });
         MySwal.fire({
-          title: "Success",
-          text: message,
+          title: "Hello!",
+          text: "Login success.",
           showCancelButton: false,
         });
-        // console.log(res.data.token);
         navigate("/");
       })
       .catch((err) => {
         const { data } = err.response;
         MySwal.fire({
           title: "Failed",
-          text: data.message,
+          text: "Wrong username or password",
           showCancelButton: false,
         });
       })
