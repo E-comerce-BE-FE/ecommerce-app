@@ -8,14 +8,25 @@ import Navbar from "components/Navbar";
 import ProductCard from "components/ProductCard";
 import "styles/index.css";
 
-import { ProductType } from "utils/types/product";
+interface TypeProduct{
+  id: number;
+  product_name: string;
+  stock: number;
+  price: number;
+  product_image: string;
+  user: User;
+}
 
-const request = "http://18.140.2.245"
+interface User{
+  user_id: number;
+  name: string;
+  address: string;
+  profilepicture: string;
+}
 
 function App() {
 
-  const [products, setProducts] = useState<ProductType[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [products, setProducts] = useState<TypeProduct[]>([]);
   
   useEffect(() => {
     fetchData();
@@ -25,16 +36,15 @@ function App() {
   function fetchData() {
     axios
       .get(
-        `${request}/products/`
+        `/products`
       )
       .then((res) => {
         setProducts(res.data.data)
-        //console.log(res.data)
+
       })
       .catch((err) => {
         alert(err());
       })
-      .finally(() => setLoading(false));
   }
 
 

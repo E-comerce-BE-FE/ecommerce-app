@@ -21,7 +21,6 @@ interface User{
   profilepicture: string;
 }
 
-const request = "https://shirayuki.site/"
 const DetailProduct = () => {
   const {id} = useParams()
 
@@ -34,16 +33,25 @@ const DetailProduct = () => {
   function fetchData() {
     axios
       .get(
-        `${request}/products/${id}`
+        `products/${id}`
       )
       .then((res) => {
         setProduct(res.data.data)
-        //console.log(res.data)
       })
       .catch((err) => {
         alert(err());
       })
   }
+
+  // const [update, setUpdate] = useState<TypeProduct>();
+  // useEffect(()=>{
+  //   data();
+  // }, [])
+  // function data(){
+  //   axios.put(`product/${id}`);
+    
+  // }
+
 
   return (
     <Layout>
