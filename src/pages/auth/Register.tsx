@@ -37,7 +37,7 @@ const Register = () => {
       password,
     };
     await axios
-      .post("https://shirayuki.site/register", body)
+      .post("register", body)
       .then((res) => {
         const { message, data } = res.data;
         MySwal.fire({
