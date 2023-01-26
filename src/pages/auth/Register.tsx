@@ -36,16 +36,16 @@ const Register = () => {
       address,
       password,
     };
-    axios
-      .post("register", body)
+    await axios
+      .post("https://shirayuki.site/register", body)
       .then((res) => {
         const { message, data } = res.data;
         MySwal.fire({
           title: "Success",
-          text: message,
+          text: "Account created",
           showCancelButton: false,
         });
-        if (data) {
+        if (res) {
           navigate("/login");
         }
       })
@@ -53,7 +53,7 @@ const Register = () => {
         const { message } = err.response;
         MySwal.fire({
           title: "Failed",
-          text: message,
+          text: "Please use another email",
           showCancelButton: false,
         });
       })

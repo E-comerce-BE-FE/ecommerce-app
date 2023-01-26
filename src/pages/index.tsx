@@ -1,11 +1,13 @@
 import { BsFillPlusCircleFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
+import ProductCard from "components/ProductCard";
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
-import ProductCard from "components/ProductCard";
+import { ProductType } from "utils/types/product";
 import "styles/index.css";
 
 interface TypeProduct{
@@ -25,29 +27,27 @@ interface User{
 }
 
 function App() {
+  const [cookie] = useCookies(["token"]);
+  const checkToken = cookie.token;
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const [products, setProducts] = useState<TypeProduct[]>([]);
-  
   useEffect(() => {
     fetchData();
   }, []);
-
-
-  function fetchData() {
-    axios
-      .get(
-        `/products`
-      )
+  
+  const fetchData = async () => {
+    await axios
+      .get(`https://shirayuki.site/products/`, {
+        headers: { Authorization: `Bearer ${cookie.token}` },
+      })
       .then((res) => {
-        setProducts(res.data.data)
-
+        setProducts(res.data.data);
       })
       .catch((err) => {
         alert(err());
       })
   }
-
-
 
   return (
     <Layout>
@@ -69,15 +69,17 @@ function App() {
         </div>
         <div className="grid grid-cols-5 gap-10">
           {products.map((product) => (
-            <ProductCard productData={product}/>
+            <ProductCard productData={product} />
           ))}
         </div>
         <div className="sticky bottom-20 flex justify-end mr-20 text-customcyan">
-          <Link to="add-new-product">
-            <div className="bg-gray-50 rounded-full p-1 duration-300 hover:cursor-pointer hover:text-cyan-300 active:scale-90">
-              <BsFillPlusCircleFill size={50} />
-            </div>
-          </Link>
+          {checkToken && (
+            <Link to="add-new-product">
+              <div className="bg-gray-50 rounded-full p-1 duration-300 hover:cursor-pointer hover:text-cyan-300 active:scale-90">
+                <BsFillPlusCircleFill size={50} />
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </Layout>
