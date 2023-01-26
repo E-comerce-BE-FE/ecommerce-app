@@ -56,7 +56,7 @@ const App = () => {
       element: <Register />,
     },
     {
-      path: "/detail-product",
+      path: "/detail-product/:id",
       element: <DetailProduct />,
     },
     {
