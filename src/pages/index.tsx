@@ -10,25 +10,19 @@ import "styles/index.css";
 
 import { ProductType } from "utils/types/product";
 
-const request = "http://18.140.2.245"
-
 function App() {
-
   const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  
+
   useEffect(() => {
     fetchData();
   }, []);
 
-
   function fetchData() {
     axios
-      .get(
-        `${request}/products/`
-      )
+      .get(`products/`)
       .then((res) => {
-        setProducts(res.data.data)
+        setProducts(res.data.data);
         //console.log(res.data)
       })
       .catch((err) => {
@@ -36,8 +30,6 @@ function App() {
       })
       .finally(() => setLoading(false));
   }
-
-
 
   return (
     <Layout>
@@ -59,7 +51,7 @@ function App() {
         </div>
         <div className="grid grid-cols-5 gap-10">
           {products.map((product) => (
-            <ProductCard productData={product}/>
+            <ProductCard productData={product} />
           ))}
         </div>
         <div className="sticky bottom-20 flex justify-end mr-20 text-customcyan">
