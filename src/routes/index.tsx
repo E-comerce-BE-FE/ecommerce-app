@@ -13,18 +13,18 @@ import MyCart from "pages/MyCart";
 import Home from "pages";
 import { useCookies } from "react-cookie";
 
-axios.defaults.baseURL = "https://shirayuki.site/";
+// axios.defaults.baseURL = "https://shirayuki.site/";
 
 const App = () => {
   const [cookie, , removeCookie] = useCookies(["token"]);
-  const checkToken = cookie.token;
+  // const checkToken = cookie.token;
 
-  axios.interceptors.request.use(function (config) {
-    config.headers = config.headers ?? {};
-    config.headers.Authorization = `Bearer ${checkToken}`;
-    // config.headers.contenttype = "multipart/form-data";
-    return config;
-  });
+  // axios.interceptors.request.use(function (config) {
+  //   config.headers = config.headers ?? {};
+  //   config.headers.Authorization = `Bearer ${checkToken}`;
+  //   config.headers.contenttype = "multipart/form-data";
+  //   return config;
+  // });
 
   axios.interceptors.response.use(
     function (response) {
