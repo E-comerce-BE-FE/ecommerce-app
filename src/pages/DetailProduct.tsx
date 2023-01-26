@@ -1,35 +1,75 @@
-import React from "react";
+import {useState, useEffect} from "react";
+import { Routes, Route, useParams } from 'react-router-dom';
+import axios from "axios";
 
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
 
+interface TypeProduct{
+  id: number;
+  product_name: string;
+  stock: number;
+  price: number;
+  product_image: string;
+  user: User;
+}
+
+interface User{
+  user_id: number;
+  name: string;
+  adddress: string;
+  profilepicture: string;
+}
+
+const request = "http://18.140.2.245"
 const DetailProduct = () => {
+  const {id} = useParams()
+
+  const [product, setProduct] = useState<TypeProduct>();
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+  function fetchData() {
+    axios
+      .get(
+        `${request}/products/${id}`
+      )
+      .then((res) => {
+        setProduct(res.data.data)
+        //console.log(res.data)
+      })
+      .catch((err) => {
+        alert(err());
+      })
+  }
+
   return (
     <Layout>
       <Navbar />
       <section className="flex justify-center items-center gap-10 mx-40 border-2 border-customcyan p-10 rounded-t-3xl">
         <div className="border-2 border-customcyan rounded-2xl">
-          <img src="src/assets/shirt.png" alt="image" />
+          <img src={product?.product_image} alt="image" />
         </div>
         <div className="flex flex-col gap-10">
           <div className="flex items-center gap-5">
             <div className="flex flex-col gap-5 w-3/5">
-              <div className="font-bold text-xl">
-                Mens Long Sleeve T-shirt Cotton Base Layer Slim Muscle
-              </div>
-              <div className="text-gray-500">Stock: 99999 pcs</div>
+              <div className="font-bold text-xl">{product?.product_name}
+              </div> 
+              <div className="text-gray-500">{product?.stock}</div>
               <div className="w-fit py-2 px-5 mt-1 border-2 border-customcyan rounded-xl text-center">
-                Rp 50000,-
+                {product?.price}
               </div>
             </div>
             <div>
               <div className="flex items-center gap-5 border-2 border-customcyan rounded-2xl p-5">
                 <div className="h-full flex items-center border-2 border-customcyan rounded-2xl p-5">
-                  <img className="w-20" src="src/assets/user.png" alt="image" />
+                  <img className="w-20" src={product?.user.profilepicture} alt="image" />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <span className="font-semibold">Marzuki Ismail</span>
-                  <span>Konohagakure</span>
+                  <span className="font-semibold">{product?.user.name}</span>
+                  <span>{product?.user.adddress}</span>
                 </div>
               </div>
             </div>
