@@ -1,11 +1,11 @@
-import {useState, useEffect} from "react";
-import { Routes, Route, useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Routes, Route, useParams } from "react-router-dom";
 import axios from "axios";
 
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
 
-interface TypeProduct{
+interface TypeProduct {
   id: number;
   product_name: string;
   stock: number;
@@ -14,35 +14,31 @@ interface TypeProduct{
   user: User;
 }
 
-interface User{
+interface User {
   user_id: number;
   name: string;
   address: string;
   profilepicture: string;
 }
 
-const request = "https://shirayuki.site/"
 const DetailProduct = () => {
-  const {id} = useParams()
+  const { id } = useParams();
 
   const [product, setProduct] = useState<TypeProduct>();
   useEffect(() => {
     fetchData();
   }, []);
 
-
   function fetchData() {
     axios
-      .get(
-        `${request}/products/${id}`
-      )
+      .get(`/products/${id}`)
       .then((res) => {
-        setProduct(res.data.data)
+        setProduct(res.data.data);
         //console.log(res.data)
       })
       .catch((err) => {
         alert(err());
-      })
+      });
   }
 
   return (
@@ -55,8 +51,7 @@ const DetailProduct = () => {
         <div className="flex flex-col gap-10">
           <div className="flex items-center gap-5">
             <div className="flex flex-col gap-5 w-3/5">
-              <div className="font-bold text-xl">{product?.product_name}
-              </div> 
+              <div className="font-bold text-xl">{product?.product_name}</div>
               <div className="text-gray-500">{product?.stock}</div>
               <div className="w-fit py-2 px-5 mt-1 border-2 border-customcyan rounded-xl text-center">
                 {product?.price}
@@ -65,7 +60,11 @@ const DetailProduct = () => {
             <div>
               <div className="flex items-center gap-5 border-2 border-customcyan rounded-2xl p-5">
                 <div className="h-full flex items-center border-2 border-customcyan rounded-2xl p-5">
-                  <img className="w-20" src={product?.user.profilepicture} alt="image" />
+                  <img
+                    className="w-20"
+                    src={product?.user.profilepicture}
+                    alt="image"
+                  />
                 </div>
                 <div className="flex flex-col gap-2">
                   <span className="font-semibold">{product?.user.name}</span>
