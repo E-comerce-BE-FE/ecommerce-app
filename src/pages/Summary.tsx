@@ -31,6 +31,7 @@ const Summary = () => {
           Shipment Detail
         </h2>
         <h2 className="text-black font-bold text-xl">Regata Joli</h2>
+        <p className="text-black text-lg">regatajoli@gmail.com</p>
         <p className="text-black text-lg">+62890000191</p>
         <p className="text-black text-lg">
           Jalan Petamburan Gg. Citra III No.91 Rt.02/03
