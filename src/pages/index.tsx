@@ -10,7 +10,7 @@ import Navbar from "components/Navbar";
 import { ProductType } from "utils/types/product";
 import "styles/index.css";
 
-interface TypeProduct{
+interface TypeProduct {
   id: number;
   product_name: string;
   stock: number;
@@ -19,7 +19,7 @@ interface TypeProduct{
   user: User;
 }
 
-interface User{
+interface User {
   user_id: number;
   name: string;
   address: string;
@@ -35,10 +35,10 @@ function App() {
   useEffect(() => {
     fetchData();
   }, []);
-  
+
   const fetchData = async () => {
     await axios
-      .get(`https://shirayuki.site/products/`, {
+      .get(`products/`, {
         headers: { Authorization: `Bearer ${cookie.token}` },
       })
       .then((res) => {
@@ -46,8 +46,8 @@ function App() {
       })
       .catch((err) => {
         alert(err());
-      })
-  }
+      });
+  };
 
   return (
     <Layout>

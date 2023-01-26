@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
 import SummaryCard from "components/SummaryCard";
 
-interface TypeProduct{
+interface TypeProduct {
   id: number;
   product_name: string;
   stock: number;
@@ -17,7 +17,7 @@ interface TypeProduct{
   user: User;
 }
 
-interface User{
+interface User {
   user_id: number;
   name: string;
   address: string;
@@ -30,18 +30,15 @@ const Summary = () => {
     fetchData();
   }, []);
 
-
   function fetchData() {
     axios
-      .get(
-        `/carts/result`
-      )
+      .get(`carts/result`)
       .then((res) => {
-        setProducts(res.data.data)
+        setProducts(res.data.data);
       })
       .catch((err) => {
         alert(err());
-      })
+      });
   }
 
   return (
