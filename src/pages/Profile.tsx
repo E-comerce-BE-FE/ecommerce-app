@@ -112,7 +112,7 @@ const Profile = () => {
             <input type="checkbox" id="my-modal-8" className="modal-toggle" />
             <div className="modal modal-bottom sm:modal-middle">
               <div className="modal-box border-2 border-customcyan">
-                <p className="mb-5 pb-2 text-xl border-b-2 font-medium">
+                <p className="mb-5 pb-2 text-xl border-b-2 font-medium text-customcyan">
                   Account Deletion
                 </p>
                 <div className="flex flex-col px-5">
@@ -157,197 +157,86 @@ const Profile = () => {
             <tr>
               <td className="w-20 pr-20 py-3 text-lg font-medium">Name</td>
               <td className="w-[40rem] text-lg ">Regata Joli</td>
-              <td className="text-customcyan text-3xl">
-                <form>
-                  <label htmlFor="my-modal-1">
-                    <p className="duration-300 hover:cursor-pointer active:scale-75">
-                      <FaPenSquare />
-                    </p>
-                  </label>
-                  <input
-                    type="checkbox"
-                    id="my-modal-1"
-                    className="modal-toggle"
-                  />
-                  <div className="modal modal-bottom sm:modal-middle">
-                    <div className="modal-box border-2 border-customcyan">
-                      <p className="mb-5 pb-2 text-xl border-b-2 font-medium">
-                        Edit Profile
-                      </p>
-                      <div className="flex justify-center items-center gap-5">
-                        <p className="text-lg">Name :</p>
-                        <input
-                          type="text"
-                          placeholder="Type new name"
-                          className="input input-bordered input-sm w-full max-w-xs border-customcyan"
-                        />
-                      </div>
-                      <div className="modal-action">
-                        <button
-                          type="submit"
-                          className="w-20 text-sm text-center border-2 border-customcyan bg-customcyan rounded-xl py-1 text-gray-50 font-medium duration-300 hover:cursor-pointer  active:scale-90"
-                        >
-                          Update
-                        </button>
-                        <label
-                          htmlFor="my-modal-1"
-                          className="w-20 text-sm text-center border-2 border-customcyan rounded-xl py-1 text-customcyan font-medium duration-300 hover:cursor-pointer  active:scale-90"
-                        >
-                          Cancel
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </td>
             </tr>
             <tr>
               <td className="py-3 text-lg font-medium">Email</td>
               <td className="text-lg">regatajoli@gmail.com</td>
-              <td className="text-customcyan text-3xl">
-                <form>
-                  <label htmlFor="my-modal-3">
-                    <p className="duration-300 hover:cursor-pointer active:scale-75">
-                      <FaPenSquare />
-                    </p>
-                  </label>
-                  <input
-                    type="checkbox"
-                    id="my-modal-3"
-                    className="modal-toggle"
-                  />
-                  <div className="modal modal-bottom sm:modal-middle">
-                    <div className="modal-box border-2 border-customcyan">
-                      <p className="mb-5 pb-2 text-xl border-b-2 font-medium">
-                        Edit Profile
-                      </p>
-                      <div className="flex justify-center items-center gap-5">
-                        <p className="text-lg">Email :</p>
-                        <input
-                          type="email"
-                          placeholder="Type new email"
-                          className="input input-bordered input-sm w-full max-w-xs border-customcyan"
-                        />
-                      </div>
-                      <div className="modal-action">
-                        <button
-                          type="submit"
-                          className="w-20 text-sm text-center border-2 border-customcyan bg-customcyan rounded-xl py-1 text-gray-50 font-medium duration-300 hover:cursor-pointer  active:scale-90"
-                        >
-                          Update
-                        </button>
-                        <label
-                          htmlFor="my-modal-3"
-                          className="w-20 text-sm text-center border-2 border-customcyan rounded-xl py-1 text-customcyan font-medium duration-300 hover:cursor-pointer  active:scale-90"
-                        >
-                          Cancel
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </td>
             </tr>
             <tr>
               <td className="py-3 text-lg font-medium">Phone</td>
               <td className="text-lg">+6281289993444</td>
-              <td className="text-customcyan text-3xl">
-                <form>
-                  <label htmlFor="my-modal-4">
-                    <p className="duration-300 hover:cursor-pointer active:scale-75">
-                      <FaPenSquare />
-                    </p>
-                  </label>
-                  <input
-                    type="checkbox"
-                    id="my-modal-4"
-                    className="modal-toggle"
-                  />
-                  <div className="modal modal-bottom sm:modal-middle">
-                    <div className="modal-box border-2 border-customcyan">
-                      <p className="mb-5 pb-2 text-xl border-b-2 font-medium">
-                        Edit Profile
-                      </p>
-                      <div className="flex justify-center items-center gap-5">
-                        <p className="text-lg">Phone :</p>
-                        <input
-                          type="email"
-                          placeholder="Type new phone number"
-                          className="input input-bordered input-sm w-full max-w-xs border-customcyan"
-                        />
-                      </div>
-                      <div className="modal-action">
-                        <button
-                          type="submit"
-                          className="w-20 text-sm text-center border-2 border-customcyan bg-customcyan rounded-xl py-1 text-gray-50 font-medium duration-300 hover:cursor-pointer  active:scale-90"
-                        >
-                          Update
-                        </button>
-                        <label
-                          htmlFor="my-modal-4"
-                          className="w-20 text-sm text-center border-2 border-customcyan rounded-xl py-1 text-customcyan font-medium duration-300 hover:cursor-pointer  active:scale-90"
-                        >
-                          Cancel
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </td>
             </tr>
             <tr>
-              <td className="py-3 text-lg font-medium flex">Address</td>
-              <td className="text-lg pr-10">
+              <td className="py-4 text-lg font-medium flex">Address</td>
+              <td className="py-4 text-lg">
                 Jalan jalan di mana mana hatiku senang no. 100 kota hantu
                 asdadasdas asd asdasdasda saadasd asdadasd asdasdasda asdasdasd
                 asdasdasd asdasdasd asdasdasd adasdsa
               </td>
-              <td className="text-customcyan text-3xl">
-                <form>
-                  <label htmlFor="my-modal-5">
-                    <p className="duration-300 hover:cursor-pointer active:scale-75">
-                      <FaPenSquare />
-                    </p>
-                  </label>
-                  <input
-                    type="checkbox"
-                    id="my-modal-5"
-                    className="modal-toggle"
-                  />
-                  <div className="modal modal-bottom sm:modal-middle">
-                    <div className="modal-box border-2 border-customcyan">
-                      <p className="mb-5 pb-2 text-xl border-b-2 font-medium">
-                        Edit Profile
-                      </p>
-                      <div className="flex justify-center items-center gap-5">
-                        <p className="text-lg">Address :</p>
-                        <input
-                          type="text"
-                          placeholder="Type new address"
-                          className="input input-bordered input-md w-full max-w-xs border-customcyan"
-                        />
-                      </div>
-                      <div className="modal-action">
-                        <button
-                          type="submit"
-                          className="w-20 text-sm text-center border-2 border-customcyan bg-customcyan rounded-xl py-1 text-gray-50 font-medium duration-300 hover:cursor-pointer  active:scale-90"
-                        >
-                          Update
-                        </button>
-                        <label
-                          htmlFor="my-modal-5"
-                          className="w-20 text-sm text-center border-2 border-customcyan rounded-xl py-1 text-customcyan font-medium duration-300 hover:cursor-pointer  active:scale-90"
-                        >
-                          Cancel
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </td>
             </tr>
           </tbody>
         </table>
+        <div>
+          <form>
+            <label htmlFor="my-modal-1">
+              <p className="duration-300 hover:cursor-pointer active:scale-75 text-customcyan text-4xl">
+                <FaPenSquare />
+              </p>
+            </label>
+            <input type="checkbox" id="my-modal-1" className="modal-toggle" />
+            <div className="modal modal-bottom sm:modal-middle">
+              <div className="modal-box border-2 border-customcyan flex flex-col justify-center text-customcyan">
+                <p className="mb-5 pb-2 text-xl border-b-2 font-medium">
+                  Edit Profile
+                </p>
+                <div className="flex justify-center gap-5">
+                  <div className="flex flex-col gap-5">
+                    <p className="py-1">Name:</p>
+                    <p className="py-1">Email:</p>
+                    <p className="py-1">Phone:</p>
+                    <p className="py-1">Address:</p>
+                  </div>
+                  <div className="flex flex-col gap-5">
+                    <input
+                      type="text"
+                      placeholder="Type new name"
+                      className="input input-bordered input-sm w-96 max-w-xs border-customcyan"
+                    />
+                    <input
+                      type="email"
+                      placeholder="Type new email"
+                      className="input input-bordered input-sm w-full max-w-xs border-customcyan"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Type new phone number"
+                      className="input input-bordered input-sm w-full max-w-xs border-customcyan"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Type new address"
+                      className="input input-bordered input-md w-full max-w-xs border-customcyan"
+                    />
+                  </div>
+                </div>
+                <div className="modal-action">
+                  <button
+                    type="submit"
+                    className="w-20 text-sm text-center border-2 border-customcyan bg-customcyan rounded-xl py-1 text-gray-50 font-medium duration-300 hover:cursor-pointer  active:scale-90"
+                  >
+                    Update
+                  </button>
+                  <label
+                    htmlFor="my-modal-1"
+                    className="w-20 text-sm text-center border-2 border-customcyan rounded-xl py-1 text-customcyan font-medium duration-300 hover:cursor-pointer  active:scale-90"
+                  >
+                    Cancel
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </section>
       <section className="flex flex-col justify-center items-center mx-40 mb-20">
         <p className="text-center text-3xl font-bold mb-10">My Products</p>
