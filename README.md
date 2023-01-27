@@ -19,6 +19,7 @@ Love a post? Drop a like! This is for the successor to ALL GOODS.
 - [Author](#author)
 
 
+
 # 💫 Features
 
 - Register & login
@@ -33,6 +34,9 @@ Love a post? Drop a like! This is for the successor to ALL GOODS.
 - Show profile
 - Update profile
 - Deactivate account
+
+<br/>
+<br/>
 
 
 
@@ -49,14 +53,25 @@ Love a post? Drop a like! This is for the successor to ALL GOODS.
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 <img src="https://img.shields.io/badge/Sweet Alert-7D4698?style=for-the-badge&logo=Sweet-Alert&logoColor=white" />
 
+<br/>
+<br/>
+
+
 # 🌎 Demo
 
-Here is a working live demo - [Vercel]
+Here is a working live demo - [Vercel](https://allgoods.vercel.app/)
 
+  <br />
+  <br />
+  
+  
+  
 # 🎨 Prototype
+![Four4 Preview](./prototype.png)
 
-Here is the link for the UI design : [Figma] 
+Here is the link for the UI design : [Figma](https://www.figma.com/file/ItToSoP9l0eW5PNaiqBQHb/Protoype-Grup-Project---Ecommerce?node-id=58%3A329&t=cjBmvMO8LZJgblSu-0)
 
+<br/>
 <br/>
 <br/>
 
@@ -68,7 +83,7 @@ To get a local copy up and running follow these simple example steps.
 
 # Prerequisites
 
-- npm
+ npm
   ```sh
   npm install npm@latest -g
   ```
@@ -90,10 +105,13 @@ To get a local copy up and running follow these simple example steps.
 npm run dev
 ```
 
+
+
 # 🤝 Collaboration
 
 - [GitHub (Version Control System Platform)](https://github.com/E-comerce-BE-FE)
 - [Discord](https://discord.com/)
+
 
 # 🧰 Backend
 
