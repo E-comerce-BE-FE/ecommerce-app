@@ -13,9 +13,9 @@ const ProductCard = (props: any) => {
             className="rounded-xl duration-300 hover:scale-105 h-60"
           />
         </figure>
-        <h2 className="card-title">{productData.product_name}</h2>
-        <p>{productData.address}</p>
-        <p className="font-semibold">{productData.price}</p>
+        <h2 className="card-title justify-center text-center">{productData.product_name}</h2>
+        <p className="text-center">{productData.address}</p>
+        <p className="font-bold text-center">{productData.price}</p>
       </div>
     </Link>
   );
