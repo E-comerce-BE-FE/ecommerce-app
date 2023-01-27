@@ -37,6 +37,11 @@ const DetailProduct = () => {
   const [userId, setUserId] = useState<string>("");
   const [userImage, setUserImage] = useState<string>("");
   const [productId, setProductId] = useState<string>("");
+  const [file, setEditFile] = useState<any>();
+  const [product_name, setProductName] = useState<string>("");
+  const [stock, setStock] = useState<string>("");
+  const [price, setPrice] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const owner = checkId == userId;
 
   useEffect(() => {
@@ -59,14 +64,36 @@ const DetailProduct = () => {
       });
   };
 
-  // const [update, setUpdate] = useState<TypeProduct>();
-  // useEffect(()=>{
-  //   data();
-  // }, [])
-  // function data(){
-  //   axios.put(`product/${id}`);
+  const handleEditProduct = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const body = new FormData();
+    body.append("file", file);
+    body.append("product_name", product_name);
+    body.append("stock", stock);
+    body.append("price", price);
+    body.append("description", description);
 
-  // }
+    await axios
+      .put(`products/${productId}`, body, {
+        headers: { Authorization: `Bearer ${cookie.token}` },
+      })
+      .then((res) => {
+        MySwal.fire({
+          title: "Success",
+          text: "Product information updated",
+          showCancelButton: false,
+        });
+        navigate(0);
+      })
+      .catch((err) => {
+        const { data } = err.response;
+        MySwal.fire({
+          title: "Failed",
+          text: data.message,
+          showCancelButton: false,
+        });
+      });
+  };
 
   const handleDeleteProduct = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -138,10 +165,10 @@ const DetailProduct = () => {
         <span>{product?.description}</span>
       </section>
       {owner && (
-        <div className="flex justify-center gap-20 mb-20 text-4xl">
-          {/* <form onSubmit={(e) => handleEditAccount(e)}>
+        <div className="flex justify-center gap-20 mb-20">
+          <form onSubmit={(e) => handleEditProduct(e)}>
             <label htmlFor="my-modal-1">
-              <p className="flex justify-center rounded-xl w-40 py-2 duration-300 hover:cursor-pointer active:scale-90 bg-customcyan text-gray-50">
+              <p className="text-4xl flex justify-center rounded-xl w-40 py-2 duration-300 hover:cursor-pointer active:scale-90 bg-customcyan text-gray-50">
                 <FaPenSquare />
               </p>
             </label>
@@ -149,39 +176,39 @@ const DetailProduct = () => {
             <div className="modal modal-bottom sm:modal-middle">
               <div className="modal-box border-2 border-customcyan flex flex-col justify-center text-customcyan">
                 <p className="mb-5 pb-2 text-xl border-b-2 font-medium">
-                  Edit Profile
+                  Update Product
                 </p>
                 <div className="flex justify-center gap-5">
                   <div className="flex flex-col gap-5">
                     <p className="py-1">Name:</p>
-                    <p className="py-1">Email:</p>
-                    <p className="py-1">Phone:</p>
-                    <p className="py-1">Address:</p>
-                    <p className="py-3">Select Photo:</p>
+                    <p className="py-1">Stock:</p>
+                    <p className="py-1">Price:</p>
+                    <p className="py-1">Description:</p>
+                    <p className="py-3">Select Image:</p>
                   </div>
                   <div className="flex flex-col gap-5">
                     <input
-                      onChange={(e) => setEditName(e.target.value)}
+                      onChange={(e) => setProductName(e.target.value)}
                       type="text"
                       placeholder="Type new name"
                       className="input input-bordered input-sm w-96 max-w-xs border-customcyan"
                     />
                     <input
-                      onChange={(e) => setEditEmail(e.target.value)}
-                      type="email"
-                      placeholder="Type new email"
+                      onChange={(e) => setStock(e.target.value)}
+                      type="text"
+                      placeholder="Type new stock"
                       className="input input-bordered input-sm w-full max-w-xs border-customcyan"
                     />
                     <input
-                      onChange={(e) => setEditPhone(e.target.value)}
+                      onChange={(e) => setPrice(e.target.value)}
                       type="text"
-                      placeholder="Type new phone number"
+                      placeholder="Type new price"
                       className="input input-bordered input-sm w-full max-w-xs border-customcyan"
                     />
                     <input
-                      onChange={(e) => setEditAddress(e.target.value)}
+                      onChange={(e) => setDescription(e.target.value)}
                       type="text"
-                      placeholder="Type new address"
+                      placeholder="Type new description"
                       className="input input-bordered input-sm w-full max-w-xs border-customcyan"
                     />
                     <input
@@ -207,10 +234,10 @@ const DetailProduct = () => {
                 </div>
               </div>
             </div>
-          </form> */}
+          </form>
           <form>
             <label htmlFor="my-modal-8">
-              <p className="flex justify-center rounded-xl w-40 py-2 duration-300 hover:cursor-pointer active:scale-90 bg-red-600 text-gray-50">
+              <p className="text-4xl flex justify-center rounded-xl w-40 py-2 duration-300 hover:cursor-pointer active:scale-90 bg-red-600 text-gray-50">
                 <FaTrashAlt />
               </p>
             </label>
