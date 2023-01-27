@@ -1,10 +1,12 @@
 export interface ProductType {
   id: number;
+  product_id: number;
   product_name: string;
   stock: number;
   price: number;
-  product_image: string;
+  product_images: string;
   user: UserType;
+  address: string;
 }
 
 export interface UserType {
