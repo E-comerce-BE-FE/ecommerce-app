@@ -3,9 +3,21 @@ import withReactContent from "sweetalert2-react-content";
 import { Link, useNavigate } from "react-router-dom";
 import { BiSearchAlt } from "react-icons/bi";
 import { useCookies } from "react-cookie";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import logo from "src/assets/logo.svg";
 import Swal from "utils/Swal";
+import ProductCard from "./ProductCard";
+
+interface TypeProduct {
+  id: number;
+  product_name: string;
+  product_image: string;
+  price: number;
+  stock: number;
+  description: string;
+}
 
 const Navbar = () => {
   const [cookie, , removeCookie] = useCookies(["token"]);
@@ -13,6 +25,24 @@ const Navbar = () => {
   // const dispatch = useDispat();
   const checkToken = cookie.token;
   const MySwal = withReactContent(Swal);
+  const [products, setProducts] = useState<TypeProduct[]>([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    await axios
+      .get(`search/`, {
+        headers: { Authorization: `Bearer ${cookie.token}` },
+      })
+      .then((res) => {
+        setProducts(res.data.data);
+      })
+      .catch((err) => {
+        alert(err());
+      });
+  };
 
   const handleLogout = async () => {
     removeCookie("token");
@@ -58,8 +88,11 @@ const Navbar = () => {
           />
           <button className="px-2 rounded-r-lg border-y-2 border-r-2 border-customcyan bg-gray-100">
             <div className="duration-300 hover:cursor-pointer  active:scale-75 text-gray-400">
+              {products.map((product)=>(
+                <ProductCard productData={product} />
+              ))}
+              </div>
               <BiSearchAlt size={30} />
-            </div>
           </button>
         </div>
         {!checkToken && (
