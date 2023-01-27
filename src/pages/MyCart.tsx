@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import CartCard from "components/CartCard";

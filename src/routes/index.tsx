@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import axios from "axios";
 
 import TransactionPurchase from "pages/TransactionPurchase";
@@ -11,7 +12,6 @@ import Profile from "pages/Profile";
 import Summary from "pages/Summary";
 import MyCart from "pages/MyCart";
 import Home from "pages";
-import { useCookies } from "react-cookie";
 
 axios.defaults.baseURL = "https://shirayuki.site/";
 

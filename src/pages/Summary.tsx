@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
+import SummaryCard from "components/SummaryCard";
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
-import SummaryCard from "components/SummaryCard";
 
 interface TypeProduct {
   id: number;

@@ -1,14 +1,13 @@
 import { FaArrowLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 import TransactionCard from "components/TransactionCard";
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
 
-interface TypeProduct{
+interface TypeProduct {
   transaction_id: number;
   total_product: number;
   subtotal: number;
@@ -18,7 +17,7 @@ interface TypeProduct{
   transaction_item: Item;
 }
 
-interface Item{
+interface Item {
   id: number;
   product_name: string;
   qty: number;
@@ -27,28 +26,22 @@ interface Item{
 }
 
 const TransactionPurchase = () => {
-
   const [products, setProducts] = useState<TypeProduct[]>([]);
-  
+
   useEffect(() => {
     fetchData();
   }, []);
 
-
   function fetchData() {
     axios
-      .get(
-        `transactions/`
-      )
+      .get(`transactions/`)
       .then((res) => {
-        setProducts(res.data.data)
-
+        setProducts(res.data.data);
       })
       .catch((err) => {
         alert(err());
-      })
+      });
   }
-
 
   return (
     <Layout>

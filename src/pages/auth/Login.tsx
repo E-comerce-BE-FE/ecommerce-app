@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 
 import AuthButton from "components/Button";
+import login from "src/assets/Login.png";
 import Layout from "components/Layout";
 import Swal from "utils/Swal";
 
@@ -116,7 +117,7 @@ const Login = () => {
             </div>
             <div className="flex-1 bg-white">
               <img
-                src="src/assets/Login.png"
+                src={login}
                 className="mx-auto alig-center justify-center mt-20"
                 style={{ width: "60%" }}
               />

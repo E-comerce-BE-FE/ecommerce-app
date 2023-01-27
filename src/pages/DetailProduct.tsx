@@ -1,6 +1,6 @@
-import withReactContent from "sweetalert2-react-content";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaPenSquare, FaTrashAlt } from "react-icons/fa";
+import withReactContent from "sweetalert2-react-content";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
@@ -123,11 +123,11 @@ const DetailProduct = () => {
     <Layout>
       <Navbar />
       <section className="flex justify-center items-center gap-10 mx-40 border-2 border-customcyan p-10 rounded-t-3xl">
-        <div className="border-2 border-customcyan rounded-2xl">
+        <div className="border-2 border-customcyan rounded-2xl p-4">
           <img
             src={product?.product_image}
             alt="image"
-            className="w-80 h-80 m-2 rounded-2xl"
+            className="w-72 h-72 rounded-2xl"
           />
         </div>
         <div className="flex flex-col gap-16">

@@ -1,7 +1,7 @@
-import { FaPenSquare, FaTrashAlt } from "react-icons/fa";
 import withReactContent from "sweetalert2-react-content";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaPenSquare } from "react-icons/fa";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 
@@ -290,14 +290,6 @@ const Profile = () => {
                 name={product.product_name}
                 price={product.price}
               />
-              {/* <div className="flex gap-10 mt-5 text-4xl items-center">
-                <button className="text-customcyan duration-300 hover:cursor-pointer active:scale-90">
-                  <FaPenSquare />
-                </button>
-                <button className="text-red-600 duration-300 hover:cursor-pointer active:scale-90">
-                  <FaTrashAlt />
-                </button>
-              </div> */}
             </div>
           ))}
         </div>

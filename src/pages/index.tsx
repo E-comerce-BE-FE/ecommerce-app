@@ -42,7 +42,6 @@ function App() {
         headers: { Authorization: `Bearer ${cookie.token}` },
       })
       .then((res) => {
-        console.log(res);
         setProducts(res.data.data);
       })
       .catch((err) => {

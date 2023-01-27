@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import register from "src/assets/Deliver_Mail.png";
 import AuthButton from "components/Button";
 import Layout from "components/Layout";
 import Swal from "utils/Swal";
@@ -153,7 +154,7 @@ const Register = () => {
             </div>
             <div className="flex-1 bg-white">
               <img
-                src="src/assets/Deliver_Mail.png"
+                src={register}
                 className="mx-auto alig-center justify-center mt-20"
                 style={{ width: "60%" }}
               />

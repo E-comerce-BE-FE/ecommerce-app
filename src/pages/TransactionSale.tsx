@@ -1,6 +1,5 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import React from "react";
 
 import TransactionCard from "components/TransactionCard";
 import Layout from "components/Layout";
