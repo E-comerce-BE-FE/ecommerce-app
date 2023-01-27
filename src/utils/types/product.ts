@@ -5,6 +5,7 @@ export interface ProductType {
   stock: number;
   price: number;
   product_images: string;
+  product_image: string;
   user: UserType;
   address: string;
 }

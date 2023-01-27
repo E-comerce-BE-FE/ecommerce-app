@@ -20,7 +20,7 @@ interface TypeProduct {
 }
 
 const Navbar = () => {
-  const [cookie, , removeCookie] = useCookies(["token"]);
+  const [cookie, , removeCookie] = useCookies(["token", "id"]);
   const navigate = useNavigate();
   // const dispatch = useDispat();
   const checkToken = cookie.token;
@@ -46,6 +46,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     removeCookie("token");
+    removeCookie("id");
     MySwal.fire({
       title: "See you later!",
       text: "You have been logged out",

@@ -1,14 +1,15 @@
+import { FaPenSquare, FaTrashAlt } from "react-icons/fa";
 import withReactContent from "sweetalert2-react-content";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaPenSquare } from "react-icons/fa";
+import { useCookies } from "react-cookie";
 import axios from "axios";
 
 import ProductCard from "components/ProductCard";
 import Layout from "components/Layout";
 import Navbar from "components/Navbar";
+import { ProductType } from "utils/types/product";
 import Swal from "utils/Swal";
-import { useCookies } from "react-cookie";
 
 const Profile = () => {
   // const [datas, setDatas] = useState<>({})
@@ -20,7 +21,7 @@ const Profile = () => {
   const [getEmail, setEmail] = useState<string>("");
   const [getPhone, setPhone] = useState<string>("");
   const [getAddress, setAddress] = useState<string>("");
-  const [products, setProducts] = useState<[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
   const [file, setEditFile] = useState<any>();
   const [name, setEditName] = useState<string>("");
   const [email, setEditEmail] = useState<string>("");
@@ -41,8 +42,8 @@ const Profile = () => {
         headers: { Authorization: `Bearer ${cookie.token}` },
       })
       .then((res) => {
-        console.log(res);
         const results = res.data.data;
+        console.log(results.product);
         setUserImage(results.user_image);
         setName(results.name);
         setEmail(results.email);
@@ -71,7 +72,7 @@ const Profile = () => {
   //     .finally(() => {});
   // };
 
-  const handleSubmitEdit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleEditAccount = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const body = new FormData();
     body.append("file", file);
@@ -91,11 +92,9 @@ const Profile = () => {
           text: "Profile updated",
           showCancelButton: false,
         });
-        console.log(res);
         navigate(0);
       })
       .catch((err) => {
-        console.log(err);
         const { data } = err.response;
         MySwal.fire({
           title: "Failed",
@@ -105,7 +104,7 @@ const Profile = () => {
       });
   };
 
-  const handleDelete = async (e: React.FormEvent<HTMLButtonElement>) => {
+  const handleDeleteAccount = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     await axios
       .delete(`users`, {
@@ -114,6 +113,30 @@ const Profile = () => {
       .then((res) => {
         removeCookie("token");
         navigate("/login");
+        MySwal.fire({
+          title: "Success",
+          text: "User account deleted",
+          showCancelButton: false,
+        });
+      })
+      .catch((err) => {
+        const { data } = err.response;
+        MySwal.fire({
+          title: "Failed",
+          text: data.message,
+          showCancelButton: false,
+        });
+      });
+  };
+
+  const handleDeleteProduct = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    await axios
+      .delete(`products/`, {
+        headers: { Authorization: `Bearer ${cookie.token}` },
+      })
+      .then((res) => {
+        console.log("a", products);
         MySwal.fire({
           title: "Success",
           text: "User account deleted",
@@ -171,7 +194,7 @@ const Profile = () => {
                 </div>
                 <div className="modal-action">
                   <button
-                    onClick={(e) => handleDelete(e)}
+                    onClick={(e) => handleDeleteAccount(e)}
                     type="submit"
                     className="w-36 text-sm text-center border-2 border-red-600 bg-red-600 rounded-xl py-1 text-gray-50 font-medium duration-300 hover:cursor-pointer  active:scale-90"
                   >
@@ -209,7 +232,7 @@ const Profile = () => {
           </tbody>
         </table>
         <div>
-          <form onSubmit={(e) => handleSubmitEdit(e)}>
+          <form onSubmit={(e) => handleEditAccount(e)}>
             <label htmlFor="my-modal-1">
               <p className="duration-300 hover:cursor-pointer active:scale-75 text-customcyan text-4xl">
                 <FaPenSquare />
@@ -280,15 +303,30 @@ const Profile = () => {
           </form>
         </div>
       </section>
-      {/* <section className="flex flex-col justify-center items-center mx-40 mb-20">
+      <section className="flex flex-col justify-center items-center mx-40 mb-20">
         <p className="text-center text-3xl font-bold mb-10">My Products</p>
         <div className="grid grid-cols-4 gap-10">
-          {[...Array(8)].map((e) => (
-            <ProductCard 
-            key={id}/>
+          {products.map((product) => (
+            <div className="flex flex-col items-center">
+              <ProductCard
+                key={product.product_id}
+                id={product.product_id}
+                image={product.product_image}
+                name={product.product_name}
+                price={product.price}
+              />
+              {/* <div className="flex gap-10 mt-5 text-4xl items-center">
+                <button className="text-customcyan duration-300 hover:cursor-pointer active:scale-90">
+                  <FaPenSquare />
+                </button>
+                <button className="text-red-600 duration-300 hover:cursor-pointer active:scale-90">
+                  <FaTrashAlt />
+                </button>
+              </div> */}
+            </div>
           ))}
         </div>
-      </section> */}
+      </section>
     </Layout>
   );
 };

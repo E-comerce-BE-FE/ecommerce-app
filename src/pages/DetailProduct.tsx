@@ -1,3 +1,4 @@
+import { FaPenSquare, FaTrashAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
@@ -25,8 +26,13 @@ interface User {
 
 const DetailProduct = () => {
   const { id } = useParams();
-  const [cookie] = useCookies(["token"]);
+  const [cookie] = useCookies(["token", "id"]);
+  const checkToken = cookie.token;
+  const checkId = cookie.id;
   const [product, setProduct] = useState<TypeProduct>();
+  const [userId, setUserId] = useState<string>("");
+  const owner = checkId == userId;
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -37,6 +43,7 @@ const DetailProduct = () => {
         headers: { Authorization: `Bearer ${cookie.token}` },
       })
       .then((res) => {
+        setUserId(res.data.data.user.user_id);
         setProduct(res.data.data);
       })
       .catch((err) => {
@@ -94,10 +101,20 @@ const DetailProduct = () => {
           </div>
         </div>
       </section>
-      <section className="flex flex-col gap-5 mx-40 mt-5 mb-20 border-2 border-customcyan p-10 rounded-b-3xl">
+      <section className="flex flex-col gap-5 mx-40 mt-5 mb-10 border-2 border-customcyan p-10 rounded-b-3xl">
         <span className="text-customcyan font-semibold">Description</span>
         <span>{product?.description}</span>
       </section>
+      {owner && (
+        <div className="flex justify-center gap-20 mb-20 text-4xl">
+          <button className="flex justify-center rounded-xl w-40 py-2 duration-300 hover:cursor-pointer active:scale-90 bg-customcyan text-gray-50">
+            <FaPenSquare />
+          </button>
+          <button className="flex justify-center rounded-xl w-40 py-2 duration-300 hover:cursor-pointer active:scale-90 bg-red-600 text-gray-50">
+            <FaTrashAlt />
+          </button>
+        </div>
+      )}
     </Layout>
   );
 };
