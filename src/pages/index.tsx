@@ -42,6 +42,7 @@ function App() {
         headers: { Authorization: `Bearer ${cookie.token}` },
       })
       .then((res) => {
+        console.log(res);
         setProducts(res.data.data);
       })
       .catch((err) => {
@@ -69,7 +70,14 @@ function App() {
         </div>
         <div className="grid grid-cols-5 gap-10">
           {products.map((product) => (
-            <ProductCard productData={product} />
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              image={product.product_images}
+              name={product.product_name}
+              address={product.address}
+              price={product.price}
+            />
           ))}
         </div>
         <div className="sticky bottom-20 flex justify-end mr-20 text-customcyan">
