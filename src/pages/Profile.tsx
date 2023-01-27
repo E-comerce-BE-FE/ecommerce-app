@@ -43,7 +43,6 @@ const Profile = () => {
       })
       .then((res) => {
         const results = res.data.data;
-        console.log(results.product);
         setUserImage(results.user_image);
         setName(results.name);
         setEmail(results.email);
@@ -112,36 +111,12 @@ const Profile = () => {
       })
       .then((res) => {
         removeCookie("token");
+        MySwal.fire({
+          title: "Success",
+          text: "User account deleted",
+          showCancelButton: false,
+        });
         navigate("/login");
-        MySwal.fire({
-          title: "Success",
-          text: "User account deleted",
-          showCancelButton: false,
-        });
-      })
-      .catch((err) => {
-        const { data } = err.response;
-        MySwal.fire({
-          title: "Failed",
-          text: data.message,
-          showCancelButton: false,
-        });
-      });
-  };
-
-  const handleDeleteProduct = async (e: React.FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    await axios
-      .delete(`products/`, {
-        headers: { Authorization: `Bearer ${cookie.token}` },
-      })
-      .then((res) => {
-        console.log("a", products);
-        MySwal.fire({
-          title: "Success",
-          text: "User account deleted",
-          showCancelButton: false,
-        });
       })
       .catch((err) => {
         const { data } = err.response;
